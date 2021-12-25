@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Hosted Link
+
+Github: https://salmandada.github.io/movieapp/
+
 ## Available Scripts
 
 In the project directory, you can run:
