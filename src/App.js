@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import './App.css'
+import MovieList from './components/MovieList'
+import MovieListHeading from './components/MovieListHeading';
+import SearchBox from './components/SearchBox';
 
-function App() {
+const App = () => {
+  const [movies, setMovies] = useState([]);
+  const [searchValue, setSearchValue] = useState('')
+
+  const getMovieRequest = async (searchValue) => {
+    const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=bde8058f`
+
+    const response = await fetch(url);
+    const responseJson = await response.json(); //It will convert http req to json.
+
+    if (responseJson.Search) {
+      setMovies(responseJson.Search)
+    }
+  };
+  // Always get Called in the first render
+  useEffect(() => {
+    getMovieRequest(searchValue);
+  }, [searchValue]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <div className="navBar">
+        <MovieListHeading heading='Search Your Favourite Movies' />
+        <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
+      </div>
+      <div className='container'>
+        <MovieList movies={movies} />
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default App
