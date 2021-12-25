@@ -5,6 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Hosted Link
 
 Github: https://salmandada.github.io/movieapp/
+Netlify: https://elegant-goodall-820996.netlify.app
 
 ## Available Scripts
 
